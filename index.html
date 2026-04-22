@@ -4,21 +4,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Otakofee – Manga Café & Gaming</title>
+
+  <!-- Noto Sans JP (body) + Sawarabi Mincho (japanese) via Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet" />
+
   <style>
+    /* ─── ALL ROUND GOTHIC — fichier local dans asset/ ─── */
+    @font-face {
+      font-family: 'AllRoundGothic';
+      src: url('asset/AllRoundGothic-Bold.woff2') format('woff2'),
+           url('asset/AllRoundGothic-Bold.woff') format('woff'),
+           url('asset/AllRoundGothic-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'AllRoundGothic';
+      src: url('asset/AllRoundGothic-Medium.woff2') format('woff2'),
+           url('asset/AllRoundGothic-Medium.woff') format('woff'),
+           url('asset/AllRoundGothic-Medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    /* Fallback si le fichier n'est pas encore dans asset/ */
     :root {
-      --neon-pink: #CE2D4F;
-      --neon-cyan: #CE2D4F;
-      --neon-yellow: #F4C5DF;
-      --neon-purple: #F4C5DF;
+      --font-brand: 'AllRoundGothic', 'Nunito', 'Varela Round', sans-serif;
       --bg-dark: #171614;
       --bg-card: #1f1d1b;
       --text-main: #FFFFFF;
       --text-muted: #a89f98;
       --border-glow: rgba(206, 45, 79, 0.18);
-      /* Brand palette */
       --red: #CE2D4F;
       --rose: #F4C5DF;
       --black: #171614;
@@ -32,7 +51,7 @@
     body {
       background-color: var(--bg-dark);
       color: var(--text-main);
-      font-family: 'Noto Sans JP', sans-serif;
+      font-family: 'Noto Sans JP', 'AllRoundGothic', sans-serif;
       overflow-x: hidden;
       cursor: default;
     }
@@ -51,7 +70,7 @@
     /* ─── SCROLLBAR ─── */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg-dark); }
-    ::-webkit-scrollbar-thumb { background: var(--neon-cyan); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
 
     /* ─── NAVBAR ─── */
     nav {
@@ -68,15 +87,15 @@
     }
 
     .nav-logo {
-      font-family: 'Zen Dots', sans-serif;
+      font-family: var(--font-brand);
       font-size: 1.4rem;
-      color: var(--neon-cyan);
+      color: var(--red);
       text-shadow: 0 0 20px var(--red), 0 0 40px rgba(206, 45, 79, 0.3);
       letter-spacing: 2px;
       text-decoration: none;
     }
 
-    .nav-logo span { color: var(--neon-pink); }
+    .nav-logo span { color: var(--red); }
 
     .nav-links {
       display: flex;
@@ -94,14 +113,14 @@
     }
 
     .nav-links a:hover {
-      color: var(--neon-cyan);
-      text-shadow: 0 0 10px var(--neon-cyan);
+      color: var(--red);
+      text-shadow: 0 0 10px var(--red);
     }
 
     .nav-cta {
       background: transparent;
-      border: 1px solid var(--neon-pink);
-      color: var(--neon-pink) !important;
+      border: 1px solid var(--red);
+      color: var(--red) !important;
       padding: 0.5rem 1.2rem;
       border-radius: 2px;
       transition: background 0.2s, box-shadow 0.2s !important;
@@ -198,7 +217,7 @@
     }
 
     .hero-title {
-      font-family: 'Zen Dots', sans-serif;
+      font-family: var(--font-brand);
       font-size: clamp(3rem, 9vw, 7rem);
       line-height: 1;
       letter-spacing: -1px;
@@ -239,7 +258,7 @@
     }
 
     .btn-primary {
-      font-family: 'Zen Dots', sans-serif;
+      font-family: var(--font-brand);
       font-size: 0.85rem;
       letter-spacing: 2px;
       padding: 1rem 2.5rem;
@@ -258,7 +277,7 @@
     }
 
     .btn-secondary {
-      font-family: 'Zen Dots', sans-serif;
+      font-family: var(--font-brand);
       font-size: 0.85rem;
       letter-spacing: 2px;
       padding: 1rem 2.5rem;
@@ -297,7 +316,7 @@
     .scroll-line {
       width: 1px;
       height: 50px;
-      background: linear-gradient(var(--neon-cyan), transparent);
+      background: linear-gradient(var(--red), transparent);
       animation: scrollPulse 2s ease-in-out infinite;
     }
     @keyframes scrollPulse {
@@ -328,7 +347,7 @@
     .stat-item:hover { background: rgba(206, 45, 79, 0.04); }
 
     .stat-num {
-      font-family: 'Zen Dots', sans-serif;
+      font-family: var(--font-brand);
       font-size: 2.8rem;
       color: var(--red);
       text-shadow: 0 0 20px rgba(206, 45, 79, 0.4);
@@ -354,7 +373,7 @@
       font-size: 0.7rem;
       letter-spacing: 5px;
       text-transform: uppercase;
-      color: var(--neon-pink);
+      color: var(--red);
       margin-bottom: 1rem;
       display: flex;
       align-items: center;
@@ -365,11 +384,11 @@
       display: block;
       width: 30px;
       height: 1px;
-      background: var(--neon-pink);
+      background: var(--red);
     }
 
     .section-title {
-      font-family: 'Zen Dots', sans-serif;
+      font-family: var(--font-brand);
       font-size: clamp(1.8rem, 4vw, 3rem);
       line-height: 1.2;
       margin-bottom: 1.5rem;
@@ -436,7 +455,7 @@
     }
 
     .service-card h3 {
-      font-family: 'Zen Dots', sans-serif;
+      font-family: var(--font-brand);
       font-size: 1.05rem;
       margin-bottom: 0.8rem;
       color: var(--card-color, var(--text-main));
@@ -462,7 +481,7 @@
       position: absolute;
       bottom: 1.5rem;
       right: 1.5rem;
-      font-family: 'Zen Dots', sans-serif;
+      font-family: var(--font-brand);
       font-size: 3rem;
       color: rgba(255,255,255,0.03);
     }
@@ -560,7 +579,7 @@
       border-left: 2px solid var(--red);
     }
     .spec-item strong {
-      font-family: 'Zen Dots', sans-serif;
+      font-family: var(--font-brand);
       font-size: 0.8rem;
       color: var(--rose);
       display: block;
@@ -594,7 +613,7 @@
     .boutique-card:hover { background: #221f1d; }
     .boutique-card .b-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
     .boutique-card h4 {
-      font-family: 'Zen Dots', sans-serif;
+      font-family: var(--font-brand);
       font-size: 0.9rem;
       color: var(--rose);
       margin-bottom: 0.5rem;
@@ -627,7 +646,7 @@
     }
     .ambiance-block:hover { border-color: rgba(244, 197, 223, 0.35); }
     .ambiance-block h3 {
-      font-family: 'Zen Dots', sans-serif;
+      font-family: var(--font-brand);
       font-size: 1rem;
       color: var(--rose);
       margin-bottom: 1rem;
@@ -671,7 +690,7 @@
       top: 1rem; right: -2.5rem;
       background: var(--red);
       color: var(--white);
-      font-family: 'Zen Dots', sans-serif;
+      font-family: var(--font-brand);
       font-size: 0.6rem;
       letter-spacing: 2px;
       padding: 0.3rem 3rem;
@@ -679,7 +698,7 @@
     }
 
     .pricing-name {
-      font-family: 'Zen Dots', sans-serif;
+      font-family: var(--font-brand);
       font-size: 0.85rem;
       letter-spacing: 3px;
       text-transform: uppercase;
@@ -687,7 +706,7 @@
       margin-bottom: 1.5rem;
     }
     .pricing-price {
-      font-family: 'Zen Dots', sans-serif;
+      font-family: var(--font-brand);
       font-size: 3rem;
       color: var(--red);
       text-shadow: 0 0 20px rgba(206, 45, 79, 0.4);
@@ -719,7 +738,7 @@
       padding: 5rem 2rem;
     }
     .cta-band h2 {
-      font-family: 'Zen Dots', sans-serif;
+      font-family: var(--font-brand);
       font-size: clamp(1.8rem, 4vw, 3rem);
       margin-bottom: 1rem;
     }
@@ -747,7 +766,7 @@
     .footer-brand p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; max-width: 280px; }
 
     .footer-col h4 {
-      font-family: 'Zen Dots', sans-serif;
+      font-family: var(--font-brand);
       font-size: 0.8rem;
       letter-spacing: 2px;
       color: var(--text-main);
@@ -830,6 +849,44 @@
     /* Fallback texte si pas d'image */
     .logo-fallback { display: none; }
 
+    /* ─── PÉTALES DE SAKURA ─── */
+    .sakura-container {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .petal {
+      position: absolute;
+      top: -80px;
+      background-image: url('asset/fleur.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0;
+      animation: petalFall linear infinite;
+      transform-origin: center center;
+      filter: drop-shadow(0 0 4px rgba(244, 197, 223, 0.3));
+    }
+
+    @keyframes petalFall {
+      0% {
+        opacity: 0;
+        transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+      }
+      5% {
+        opacity: 0.85;
+      }
+      85% {
+        opacity: 0.6;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(105vh) translateX(var(--drift)) rotate(var(--spin)) scale(var(--scale-end));
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -837,7 +894,7 @@
   <!-- NAVBAR -->
   <nav>
     <a href="#" class="nav-logo">
-      <img src="assets/logo.png" alt="Otakofee" class="logo-img"
+      <img src="asset/logo otakofee temp png V2.png" alt="Otakofee" class="logo-img"
            onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
       <span class="logo-fallback">Otakofee</span>
     </a>
@@ -856,6 +913,9 @@
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
+
+    <!-- Pétales de sakura -->
+    <div class="sakura-container" id="sakuraContainer"></div>
 
     <span class="hero-tag">Manga Café &amp; Gaming — Reims</span>
     <p class="hero-jp">アキハバラ電</p>
@@ -1050,7 +1110,7 @@
         <div class="ambiance-block">
           <span class="a-icon">👾</span>
           <h3>Décor Immersif</h3>
-          <p>Affiches vintages, néons, cosplay corner photo — l'Akihabara Den est conçu pour vous faire sentir dans le quartier électrique de Tokyo, à deux pas de chez vous.</p>
+          <p>Affiches vintages, néons, cosplay corner photo — Otakofee est conçu pour vous faire sentir dans le quartier électrique de Tokyo, à deux pas de chez vous.</p>
         </div>
       </div>
     </div>
@@ -1121,9 +1181,9 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#" class="nav-logo">
-          <img src="assets/logo.png" alt="Akihabara Den" class="logo-img logo-img--footer"
+          <img src="asset/logo otakofee temp png V2.png" alt="Otakofee" class="logo-img logo-img--footer"
                onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
-          <span class="logo-fallback">Akihabara<span style="color:var(--red);">Den</span></span>
+          <span class="logo-fallback">Otakofee</span>
         </a>
         <p>Le manga café et gaming center qui fait voyager au cœur du Japon. Culture, jeu et communauté — tout sous un même toit.</p>
         <div class="social-links">
@@ -1158,14 +1218,14 @@
         <ul>
           <li><a href="#">📍 Reims, France</a></li>
           <li><a href="#">🕙 Lun–Dim 10h–00h</a></li>
-          <li><a href="mailto:contact@akihabaraden.fr">✉ contact@...</a></li>
+          <li><a href="mailto:contact@otakofee.fr">✉ contact@...</a></li>
           <li><a href="tel:+33600000000">📞 06 00 00 00 00</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2025 Otakofee — Tous droits réservés</span>
-      <span style="color:var(--rose);font-family:'Zen Dots',sans-serif;font-size:0.7rem;">オタコフィー</span>
+      <span style="color:var(--rose);font-family:var(--font-brand);font-size:0.7rem;">オタコフィー</span>
     </div>
   </footer>
 
@@ -1205,6 +1265,62 @@
       el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
       observer.observe(el);
     });
+
+    // ─── PÉTALES DE SAKURA ───
+    (function() {
+      const container = document.getElementById('sakuraContainer');
+      if (!container) return;
+
+      // Configurations variées des pétales
+      const petalConfigs = [
+        { size: 18, minDelay: 0,   duration: 7  },
+        { size: 26, minDelay: 1.2, duration: 9  },
+        { size: 14, minDelay: 2.5, duration: 6  },
+        { size: 32, minDelay: 0.5, duration: 11 },
+        { size: 20, minDelay: 3.8, duration: 8  },
+        { size: 12, minDelay: 1.8, duration: 5.5},
+        { size: 28, minDelay: 4.2, duration: 10 },
+        { size: 16, minDelay: 0.9, duration: 7.5},
+        { size: 22, minDelay: 5.1, duration: 9.5},
+        { size: 36, minDelay: 2.1, duration: 12 },
+        { size: 15, minDelay: 3.3, duration: 6.5},
+        { size: 24, minDelay: 6.0, duration: 8.5},
+        { size: 19, minDelay: 1.5, duration: 7.2},
+        { size: 30, minDelay: 4.7, duration: 10.5},
+        { size: 13, minDelay: 2.8, duration: 5.8},
+        { size: 40, minDelay: 0.3, duration: 13 },
+        { size: 17, minDelay: 5.5, duration: 7.8},
+        { size: 23, minDelay: 3.0, duration: 9.2},
+      ];
+
+      petalConfigs.forEach((cfg, i) => {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+
+        // Position X aléatoire sur toute la largeur
+        const startX = Math.random() * 100; // en %
+        // Dérive horizontale pendant la chute (-80px à +80px)
+        const drift = (Math.random() * 160 - 80).toFixed(0) + 'px';
+        // Rotation totale (1 à 3 tours)
+        const spin = (Math.random() * 720 + 180).toFixed(0) + 'deg';
+        // Légère variation de scale en fin de chute
+        const scaleEnd = (0.7 + Math.random() * 0.6).toFixed(2);
+
+        petal.style.cssText = `
+          left: ${startX}%;
+          width: ${cfg.size}px;
+          height: ${cfg.size}px;
+          --drift: ${drift};
+          --spin: ${spin};
+          --scale-end: ${scaleEnd};
+          animation-duration: ${cfg.duration}s;
+          animation-delay: ${cfg.minDelay}s;
+          opacity: 0;
+        `;
+
+        container.appendChild(petal);
+      });
+    })();
   </script>
 </body>
 </html>
