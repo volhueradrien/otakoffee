@@ -458,7 +458,7 @@
     }
 
     .service-card p {
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.75);
       font-size: 0.88rem;
       line-height: 1.8;
     }
@@ -604,9 +604,12 @@
       background: var(--bg-card);
       padding: 2rem 1.5rem;
       text-align: center;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.2s;
+      text-decoration: none;
+      display: block;
+      cursor: pointer;
     }
-    .boutique-card:hover { background: #221f1d; }
+    .boutique-card:hover { background: #221f1d; transform: translateY(-3px); }
     .boutique-card .b-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
     .boutique-card h4 {
       font-family: var(--font-brand);
@@ -615,6 +618,20 @@
       margin-bottom: 0.5rem;
     }
     .boutique-card p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
+    .boutique-link-hint {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      color: var(--red);
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .boutique-card:hover .boutique-link-hint {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     /* ─── ATMOSPHERE / MANGA ─── */
     #ambiance {
@@ -729,6 +746,8 @@
       gap: 1.5px;
       background: var(--border-glow);
       margin-top: 3rem;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .pricing-card {
@@ -1318,26 +1337,30 @@
     <div class="section-label">Boutique</div>
     <h2 class="section-title">TCG Goodies Japon</h2>
     <div class="boutique-grid">
-      <div class="boutique-card">
+      <a class="boutique-card" href="https://www.pokemon.com/fr/jcc-pokemon" target="_blank" rel="noopener">
         <span class="b-icon">⚡</span>
         <h4>Pokémon TCG</h4>
         <p>Boosters, displays, decks pré-construits et singles. Toutes les extensions disponibles, des classiques aux dernières sorties.</p>
-      </div>
-      <div class="boutique-card">
+        <span class="boutique-link-hint">Voir le site →</span>
+      </a>
+      <a class="boutique-card" href="https://eu.onepiece-cardgame.com/fr/" target="_blank" rel="noopener">
         <span class="b-icon">☠️</span>
         <h4>One Piece TCG</h4>
         <p>Le jeu de cartes qui déferle sur la France. Boosters rares, cartes OP et packs leader en stock permanent.</p>
-      </div>
-      <div class="boutique-card">
+        <span class="boutique-link-hint">Voir le site →</span>
+      </a>
+      <a class="boutique-card" href="https://www.dbs-cardgame.com/eu/fr/" target="_blank" rel="noopener">
         <span class="b-icon">🐉</span>
         <h4>Dragon Ball Super</h4>
         <p>Toute la gamme DBS Card Game avec les boosters UW et les cartes ultra-rares recherchées par les collectionneurs.</p>
-      </div>
-      <div class="boutique-card">
+        <span class="boutique-link-hint">Voir le site →</span>
+      </a>
+      <a class="boutique-card" href="https://mangafactory.fr" target="_blank" rel="noopener">
         <span class="b-icon">🎎</span>
-        <h4>Goodies Figurines</h4>
+        <h4>Goodies & Figurines</h4>
         <p>Figurines Funko Pop, Nendoroid, SH Figuarts. Peluches, pins, posters et produits dérivés de vos animés favoris.</p>
-      </div>
+        <span class="boutique-link-hint">Voir le site →</span>
+      </a>
     </div>
   </div>
   </section>
@@ -1442,10 +1465,12 @@
         </a>
         <p>Le manga café et gaming center qui fait voyager au cœur du Japon. Culture, jeu et communauté — tout sous un même toit.</p>
         <div class="social-links">
-          <a href="#" class="social-link" aria-label="Instagram">📸</a>
-          <a href="#" class="social-link" aria-label="Twitter/X">𝕏</a>
-          <a href="#" class="social-link" aria-label="Discord">💬</a>
-          <a href="#" class="social-link" aria-label="TikTok">🎵</a>
+          <a href="https://www.instagram.com/volhuer_adrien/?hl=fr" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://x.com/OTK_Franki" target="_blank" rel="noopener" class="social-link" aria-label="Twitter / X">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.63 5.905-5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
         </div>
       </div>
       <div class="footer-col">
