@@ -662,7 +662,8 @@
 
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 860px;
       gap: 1.5px;
       background: var(--border-glow);
       margin-top: 3rem;
@@ -883,6 +884,151 @@
       }
     }
 
+    /* ─── NAV CONTACT LINK ─── */
+    .nav-contact {
+      color: var(--rose) !important;
+      border-bottom: 1px solid rgba(244, 197, 223, 0.4);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s !important;
+    }
+    .nav-contact:hover {
+      color: var(--white) !important;
+      border-color: var(--white);
+      text-shadow: none !important;
+    }
+
+    /* ─── MODAL CONTACT ─── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(23, 22, 20, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glow);
+      max-width: 540px;
+      width: 100%;
+      padding: 3rem;
+      position: relative;
+      transform: translateY(24px);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.open .modal-box {
+      transform: translateY(0);
+    }
+    .modal-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--red), transparent);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.2rem; right: 1.2rem;
+      background: none;
+      border: 1px solid var(--border-glow);
+      color: var(--text-muted);
+      width: 32px; height: 32px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .modal-close:hover { border-color: var(--red); color: var(--red); }
+
+    .modal-header { margin-bottom: 2rem; }
+    .modal-icon {
+      display: inline-block;
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+    }
+    .modal-title {
+      font-family: var(--font-brand);
+      font-size: 1.6rem;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+    .modal-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .modal-form { display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label {
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--bg-dark);
+      border: 1px solid var(--border-glow);
+      color: var(--white);
+      padding: 0.75rem 1rem;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--text-muted); opacity: 0.6; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--red); }
+    .form-group select option { background: var(--bg-card); }
+
+    .modal-submit {
+      width: 100%;
+      justify-content: center;
+      margin-top: 0.5rem;
+      clip-path: none;
+      border-radius: 0;
+      font-size: 0.9rem;
+      padding: 1rem;
+      cursor: pointer;
+    }
+
+    .modal-confirm {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #6fcf97;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 500px) {
+      .modal-box { padding: 2rem 1.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
   </style>
 </head>
 <body>
@@ -900,9 +1046,56 @@
       <li><a href="#boutique">Boutique</a></li>
       <li><a href="#ambiance">Ambiance</a></li>
       <li><a href="#tarifs">Tarifs</a></li>
+      <li><a href="#" class="nav-contact" id="openContact">Contact</a></li>
       <li><a href="#contact" class="nav-cta">Réserver</a></li>
     </ul>
   </nav>
+
+  <!-- MODAL CONTACT -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+      <button class="modal-close" id="closeContact" aria-label="Fermer">✕</button>
+      <div class="modal-header">
+        <span class="modal-icon">✉</span>
+        <h2 class="modal-title">Nous contacter</h2>
+        <p class="modal-subtitle">Une question ? Une réservation ? On vous répond vite.</p>
+      </div>
+      <form class="modal-form" id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="contactNom">Nom</label>
+            <input type="text" id="contactNom" name="nom" placeholder="Votre nom" required />
+          </div>
+          <div class="form-group">
+            <label for="contactPrenom">Prénom</label>
+            <input type="text" id="contactPrenom" name="prenom" placeholder="Votre prénom" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="contactEmail">Email</label>
+          <input type="email" id="contactEmail" name="email" placeholder="votre@email.com" required />
+        </div>
+        <div class="form-group">
+          <label for="contactSujet">Sujet</label>
+          <select id="contactSujet" name="sujet">
+            <option value="reservation">Réservation PC</option>
+            <option value="tcg">Cartes TCG & Boutique</option>
+            <option value="evenement">Événement / Tournoi</option>
+            <option value="info">Renseignement général</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="contactMsg">Message</label>
+          <textarea id="contactMsg" name="message" rows="4" placeholder="Votre message..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary modal-submit">Envoyer le message</button>
+        <p class="modal-confirm" id="modalConfirm" style="display:none;">
+          ✅ Message envoyé ! On vous répond dans les plus brefs délais.
+        </p>
+      </form>
+    </div>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
@@ -1145,26 +1338,13 @@
         </ul>
         <a href="#contact" class="btn-primary">Choisir</a>
       </div>
-      <div class="pricing-card">
-        <div class="pricing-name">Abonnement</div>
-        <div class="pricing-price"><sup>€</sup>49<sub>/mois</sub></div>
-        <p class="pricing-desc">Pour les habitués — accès prioritaire et avantages exclusifs.</p>
-        <ul class="pricing-features">
-          <li>Accès illimité chaque jour</li>
-          <li>Réservation prioritaire PC</li>
-          <li>-15% boutique TCG</li>
-          <li>Invitations soirées VIP</li>
-          <li>Badge membre collector</li>
-        </ul>
-        <a href="#contact" class="btn-secondary">Choisir</a>
-      </div>
     </div>
   </div>
   </section>
 
   <!-- CTA BAND -->
   <div class="cta-band">
-    <h2>Prêt à rejoindre  <span>Otakofee/span> ?</h2>
+    <h2>Prêt à rejoindre  <span>Otakofee</span> ?</h2>
     <p>Réservez votre session en ligne ou passez directement — on vous accueille 7j/7 de 10h à minuit.</p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
       <a href="#contact" class="btn-primary">Réserver maintenant</a>
@@ -1317,6 +1497,59 @@
         container.appendChild(petal);
       });
     })();
+    // ─── MODAL CONTACT ───
+    const overlay    = document.getElementById('modalOverlay');
+    const openBtn    = document.getElementById('openContact');
+    const closeBtn   = document.getElementById('closeContact');
+    const form       = document.getElementById('contactForm');
+    const confirm    = document.getElementById('modalConfirm');
+
+    function openModal() {
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    openBtn.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const nom     = document.getElementById('contactNom').value.trim();
+      const prenom  = document.getElementById('contactPrenom').value.trim();
+      const email   = document.getElementById('contactEmail').value.trim();
+      const sujet   = document.getElementById('contactSujet').value;
+      const message = document.getElementById('contactMsg').value.trim();
+
+      const sujetLabels = {
+        reservation: 'Réservation PC',
+        tcg:         'Cartes TCG & Boutique',
+        evenement:   'Événement / Tournoi',
+        info:        'Renseignement général',
+        autre:       'Autre'
+      };
+
+      const body = `Nom : ${nom} ${prenom}%0AEmail : ${email}%0ASujet : ${sujetLabels[sujet]}%0A%0AMessage :%0A${encodeURIComponent(message)}`;
+      const mailtoLink = `mailto:otakoffee.hub@gmail.com?subject=[Otakofee] ${sujetLabels[sujet]} - ${nom}&body=${body}`;
+
+      window.location.href = mailtoLink;
+
+      // Affiche le message de confirmation après un court délai
+      setTimeout(() => {
+        confirm.style.display = 'block';
+        form.reset();
+        setTimeout(() => {
+          confirm.style.display = 'none';
+          closeModal();
+        }, 3000);
+      }, 500);
+    });
+
   </script>
 </body>
 </html>
