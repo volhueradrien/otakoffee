@@ -756,6 +756,9 @@
       text-align: center;
       position: relative;
       overflow: hidden;
+      /* Flex colonne pour pousser le bouton en bas */
+      display: flex;
+      flex-direction: column;
     }
     .pricing-card.featured {
       background: linear-gradient(160deg, #241719 0%, #1a1110 100%);
@@ -801,10 +804,17 @@
       flex-direction: column;
       gap: 0.8rem;
       margin-bottom: 2rem;
+      /* Prend tout l'espace dispo → pousse le bouton vers le bas */
+      flex: 1;
     }
     .pricing-features li::before {
       content: '▸ ';
       color: var(--red);
+    }
+    /* Le bouton dans la carte reste toujours en bas */
+    .pricing-card .btn-primary,
+    .pricing-card .btn-secondary {
+      margin-top: auto;
     }
 
     /* ─── CTA BAND ─── */
