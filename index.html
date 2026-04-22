@@ -227,11 +227,45 @@
     .hero-title .line-pink {
       display: block;
       color: var(--white);
+      animation: neonFlicker 6s infinite;
     }
     .hero-title .line-cyan {
       display: block;
       color: var(--red);
       text-shadow: 0 0 40px rgba(206, 45, 79, 0.5), 0 0 80px rgba(206, 45, 79, 0.2);
+    }
+
+    @keyframes neonFlicker {
+      0%   { opacity: 1;    text-shadow: 0 0 10px #fff, 0 0 30px #fff, 0 0 60px rgba(244,197,223,0.4); }
+      4%   { opacity: 0.85; text-shadow: none; }
+      6%   { opacity: 1;    text-shadow: 0 0 10px #fff, 0 0 30px #fff, 0 0 60px rgba(244,197,223,0.4); }
+      8%   { opacity: 0.8;  text-shadow: none; }
+      10%  { opacity: 1;    text-shadow: 0 0 10px #fff, 0 0 30px #fff, 0 0 60px rgba(244,197,223,0.5); }
+      55%  { opacity: 1;    text-shadow: 0 0 10px #fff, 0 0 30px #fff, 0 0 60px rgba(244,197,223,0.4); }
+      57%  { opacity: 0.9;  text-shadow: none; }
+      59%  { opacity: 1;    text-shadow: 0 0 10px #fff, 0 0 30px #fff, 0 0 60px rgba(244,197,223,0.4); }
+      100% { opacity: 1;    text-shadow: 0 0 10px #fff, 0 0 30px #fff, 0 0 60px rgba(244,197,223,0.4); }
+    }
+
+    /* Effet néon clignotant sur logo-name navbar */
+    .logo-name {
+      font-family: var(--font-brand);
+      font-size: 1.2rem;
+      color: var(--rose);
+      letter-spacing: 2px;
+      animation: neonFlickerSmall 6s infinite;
+    }
+
+    @keyframes neonFlickerSmall {
+      0%   { opacity: 1;    text-shadow: 0 0 6px var(--rose), 0 0 15px rgba(244,197,223,0.5); }
+      4%   { opacity: 0.7;  text-shadow: none; }
+      6%   { opacity: 1;    text-shadow: 0 0 6px var(--rose), 0 0 15px rgba(244,197,223,0.5); }
+      8%   { opacity: 0.75; text-shadow: none; }
+      10%  { opacity: 1;    text-shadow: 0 0 6px var(--rose), 0 0 15px rgba(244,197,223,0.5); }
+      55%  { opacity: 1;    text-shadow: 0 0 6px var(--rose), 0 0 15px rgba(244,197,223,0.5); }
+      57%  { opacity: 0.8;  text-shadow: none; }
+      59%  { opacity: 1;    text-shadow: 0 0 6px var(--rose), 0 0 15px rgba(244,197,223,0.5); }
+      100% { opacity: 1;    text-shadow: 0 0 6px var(--rose), 0 0 15px rgba(244,197,223,0.5); }
     }
 
     .hero-subtitle {
@@ -955,12 +989,6 @@
     }
     /* Fallback texte si pas d'image */
     .logo-fallback { display: none; }
-    .logo-name {
-      font-family: var(--font-brand);
-      font-size: 1.2rem;
-      color: var(--rose);
-      letter-spacing: 2px;
-    }
     .logo-video {
       height: 52px;
       width: auto;
@@ -1260,14 +1288,11 @@
 
   <!-- NAVBAR -->
   <nav>
-    <a href="#" class="nav-logo">
-      <video class="logo-img logo-video" autoplay loop muted playsinline
-             oncanplay="this.style.display='block';this.nextElementSibling.style.display='none';"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+    <a href="#" class="nav-logo" id="navLogo">
+      <video class="logo-img logo-video" id="logoVideo" autoplay loop muted playsinline>
         <source src="asset_logo animé alleger.webm" type="video/webm" />
-        
       </video>
-      <img src="asset/logo otakofee temp png V2.png" alt="Otakoffee" class="logo-img"
+      <img src="asset/logo otakofee temp png V2.png" alt="Otakoffee" class="logo-img" id="logoPng"
            style="display:none;" />
       <span class="logo-name">Otakoffee</span>
     </a>
@@ -1630,13 +1655,10 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#" class="nav-logo" style="margin-bottom:1rem;">
-          <video class="logo-img logo-img--footer logo-video" autoplay loop muted playsinline
-                 oncanplay="this.style.display='block';this.nextElementSibling.style.display='none';"
-                 onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+          <video class="logo-img logo-img--footer logo-video" id="logoVideoFooter" autoplay loop muted playsinline>
             <source src="asset_logo animé alleger.webm" type="video/webm" />
-            
           </video>
-          <img src="asset/logo otakofee temp png V2.png" alt="Otakoffee" class="logo-img logo-img--footer"
+          <img src="asset/logo otakofee temp png V2.png" alt="Otakoffee" class="logo-img logo-img--footer" id="logoPngFooter"
                style="display:none;" />
           <span class="logo-name">Otakoffee</span>
         </a>
@@ -1960,6 +1982,38 @@
           btn.disabled = false;
         }
       });
+    })();
+
+    // ─── LOGO VIDÉO FALLBACK ───
+    // Si la vidéo ne se charge pas en 2s → affiche le PNG
+    (function() {
+      function setupVideoFallback(videoId, pngId) {
+        const vid = document.getElementById(videoId);
+        const png = document.getElementById(pngId);
+        if (!vid || !png) return;
+
+        let loaded = false;
+
+        vid.addEventListener('playing', function() {
+          loaded = true;
+        });
+
+        // Timeout 2.5s : si pas de lecture → PNG
+        setTimeout(function() {
+          if (!loaded) {
+            vid.style.display = 'none';
+            png.style.display = 'block';
+          }
+        }, 2500);
+
+        vid.addEventListener('error', function() {
+          vid.style.display = 'none';
+          png.style.display = 'block';
+        });
+      }
+
+      setupVideoFallback('logoVideo', 'logoPng');
+      setupVideoFallback('logoVideoFooter', 'logoPngFooter');
     })();
 
   </script>
