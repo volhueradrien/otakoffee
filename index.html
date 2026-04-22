@@ -979,12 +979,14 @@
       width: auto;
       display: block;
       object-fit: contain;
-      /* Supprime le fond noir du PNG */
       mix-blend-mode: screen;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .logo-img:hover {
+      transform: scale(1.18) rotate(-4deg);
     }
     .logo-img--footer {
       height: 44px;
-      margin-bottom: 0.5rem;
       mix-blend-mode: screen;
     }
     /* Fallback texte si pas d'image */
@@ -1289,11 +1291,7 @@
   <!-- NAVBAR -->
   <nav>
     <a href="#" class="nav-logo" id="navLogo">
-      <video class="logo-img logo-video" id="logoVideo" autoplay loop muted playsinline>
-        <source src="asset_logo animé alleger.webm" type="video/webm" />
-      </video>
-      <img src="asset/logo otakofee temp png V2.png" alt="Otakoffee" class="logo-img" id="logoPng"
-           style="display:none;" />
+      <img src="asset/logo otakofee temp png V2.png" alt="Otakoffee" class="logo-img" />
       <span class="logo-name">Otakoffee</span>
     </a>
     <ul class="nav-links">
@@ -1655,11 +1653,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#" class="nav-logo" style="margin-bottom:1rem;">
-          <video class="logo-img logo-img--footer logo-video" id="logoVideoFooter" autoplay loop muted playsinline>
-            <source src="asset_logo animé alleger.webm" type="video/webm" />
-          </video>
-          <img src="asset/logo otakofee temp png V2.png" alt="Otakoffee" class="logo-img logo-img--footer" id="logoPngFooter"
-               style="display:none;" />
+          <img src="asset/logo otakofee temp png V2.png" alt="Otakoffee" class="logo-img logo-img--footer" />
           <span class="logo-name">Otakoffee</span>
         </a>
         <p>Le manga café et gaming center qui fait voyager au cœur du Japon. Culture, jeu et communauté — tout sous un même toit.</p>
@@ -1984,37 +1978,6 @@
       });
     })();
 
-    // ─── LOGO VIDÉO FALLBACK ───
-    // Si la vidéo ne se charge pas en 2s → affiche le PNG
-    (function() {
-      function setupVideoFallback(videoId, pngId) {
-        const vid = document.getElementById(videoId);
-        const png = document.getElementById(pngId);
-        if (!vid || !png) return;
-
-        let loaded = false;
-
-        vid.addEventListener('playing', function() {
-          loaded = true;
-        });
-
-        // Timeout 2.5s : si pas de lecture → PNG
-        setTimeout(function() {
-          if (!loaded) {
-            vid.style.display = 'none';
-            png.style.display = 'block';
-          }
-        }, 2500);
-
-        vid.addEventListener('error', function() {
-          vid.style.display = 'none';
-          png.style.display = 'block';
-        });
-      }
-
-      setupVideoFallback('logoVideo', 'logoPng');
-      setupVideoFallback('logoVideoFooter', 'logoPngFooter');
-    })();
 
   </script>
 </body>
