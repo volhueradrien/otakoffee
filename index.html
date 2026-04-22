@@ -610,7 +610,21 @@
       cursor: pointer;
     }
     .boutique-card:hover { background: #221f1d; transform: translateY(-3px); }
-    .boutique-card .b-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
+    .boutique-card .b-icon { font-size: 3rem; display: block; margin-bottom: 1rem; min-height: 80px; display: flex; align-items: center; justify-content: center; }
+    .boutique-card .brand-logo {
+      width: auto;
+      max-width: 140px;
+      max-height: 70px;
+      object-fit: contain;
+      /* Filtre pour rendre les logos blancs/neutres sur fond sombre */
+      filter: brightness(0) invert(1);
+      opacity: 0.85;
+      transition: opacity 0.2s, filter 0.2s;
+    }
+    .boutique-card:hover .brand-logo {
+      opacity: 1;
+      filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(244,197,223,0.4));
+    }
     .boutique-card h4 {
       font-family: var(--font-brand);
       font-size: 0.9rem;
@@ -1348,19 +1362,19 @@
     <h2 class="section-title">TCG Goodies Japon</h2>
     <div class="boutique-grid">
       <a class="boutique-card" href="https://www.pokemon.com/fr/jcc-pokemon" target="_blank" rel="noopener">
-        <span class="b-icon">⚡</span>
+        <span class="b-icon"><img src="asset/International_Pokémon_logo.png" alt="Pokémon TCG" class="brand-logo" /></span>
         <h4>Pokémon TCG</h4>
         <p>Boosters, displays, decks pré-construits et singles. Toutes les extensions disponibles, des classiques aux dernières sorties.</p>
         <span class="boutique-link-hint">Voir le site →</span>
       </a>
       <a class="boutique-card" href="https://fr.onepiece-cardgame.com/" target="_blank" rel="noopener">
-        <span class="b-icon">☠️</span>
+        <span class="b-icon"><img src="asset/One_Piece_Logo.png" alt="One Piece TCG" class="brand-logo" /></span>
         <h4>One Piece TCG</h4>
         <p>Le jeu de cartes qui déferle sur la France. Boosters rares, cartes OP et packs leader en stock permanent.</p>
         <span class="boutique-link-hint">Voir le site →</span>
       </a>
       <a class="boutique-card" href="https://www.dbs-cardgame.com/europe-fr/" target="_blank" rel="noopener">
-        <span class="b-icon">🐉</span>
+        <span class="b-icon"><img src="asset/dragonball.png" alt="Dragon Ball Super" class="brand-logo" /></span>
         <h4>Dragon Ball Super</h4>
         <p>Toute la gamme DBS Card Game avec les boosters UW et les cartes ultra-rares recherchées par les collectionneurs.</p>
         <span class="boutique-link-hint">Voir le site →</span>
