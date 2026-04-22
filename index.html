@@ -477,9 +477,11 @@
       position: absolute;
       bottom: 1.5rem;
       right: 1.5rem;
-      font-family: var(--font-brand);
+      font-family: 'Georgia', 'Times New Roman', serif;
       font-size: 3rem;
-      color: rgba(255,255,255,0.03);
+      color: rgba(255,255,255,0.04);
+      font-weight: 700;
+      line-height: 1;
     }
 
     /* ─── GAMING ZONE HIGHLIGHT ─── */
@@ -756,6 +758,12 @@
       text-align: center;
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Pousse le bouton tout en bas */
+    .pricing-card .pricing-features {
+      flex: 1;
     }
     .pricing-card.featured {
       background: linear-gradient(160deg, #241719 0%, #1a1110 100%);
