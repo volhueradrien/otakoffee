@@ -1518,8 +1518,13 @@
     overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
       e.preventDefault();
+
+      const submitBtn = form.querySelector('.modal-submit');
+      submitBtn.textContent = 'Envoi en cours...';
+      submitBtn.disabled = true;
+
       const nom     = document.getElementById('contactNom').value.trim();
       const prenom  = document.getElementById('contactPrenom').value.trim();
       const email   = document.getElementById('contactEmail').value.trim();
@@ -1534,20 +1539,42 @@
         autre:       'Autre'
       };
 
-      const body = `Nom : ${nom} ${prenom}%0AEmail : ${email}%0ASujet : ${sujetLabels[sujet]}%0A%0AMessage :%0A${encodeURIComponent(message)}`;
-      const mailtoLink = `mailto:otakoffee.hub@gmail.com?subject=[Otakofee] ${sujetLabels[sujet]} - ${nom}&body=${body}`;
+      // Formspree — envoie directement à otakoffee.hub@gmail.com
+      // Étape unique : aller sur https://formspree.io/f/otakoffee.hub@gmail.com
+      // et remplacer YOUR_FORM_ID par l'ID donné (ex: xpwzabcd)
+      const FORMSPREE_ID = 'YOUR_FORM_ID';
 
-      window.location.href = mailtoLink;
+      try {
+        const res = await fetch(`https://formspree.io/f/${xqewyvrr}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            _replyto:  email,
+            _subject:  `[Otakofee] ${sujetLabels[sujet]} — ${nom} ${prenom}`,
+            nom:       `${nom} ${prenom}`,
+            email:     email,
+            sujet:     sujetLabels[sujet],
+            message:   message
+          })
+        });
 
-      // Affiche le message de confirmation après un court délai
-      setTimeout(() => {
-        confirm.style.display = 'block';
-        form.reset();
-        setTimeout(() => {
-          confirm.style.display = 'none';
-          closeModal();
-        }, 3000);
-      }, 500);
+        if (res.ok) {
+          confirm.style.display = 'block';
+          form.reset();
+          submitBtn.textContent = 'Envoyer le message';
+          submitBtn.disabled = false;
+          setTimeout(() => {
+            confirm.style.display = 'none';
+            closeModal();
+          }, 3000);
+        } else {
+          throw new Error('Erreur serveur');
+        }
+      } catch(err) {
+        submitBtn.textContent = '❌ Erreur — réessayez';
+        submitBtn.disabled = false;
+        setTimeout(() => { submitBtn.textContent = 'Envoyer le message'; }, 3000);
+      }
     });
 
   </script>
