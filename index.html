@@ -618,13 +618,47 @@
 
     /* ─── ATMOSPHERE / MANGA ─── */
     #ambiance {
-      background: var(--bg-card);
+      position: relative;
       border-top: 1px solid var(--border-glow);
+      overflow: hidden;
+    }
+
+    /* ── Carrousel background ── */
+    .ambiance-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .ambiance-bg-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+    .ambiance-bg-slide.active { opacity: 1; }
+
+    /* Overlay sombre pour garder le texte lisible */
+    .ambiance-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(23,22,20,0.72) 0%,
+        rgba(23,22,20,0.55) 50%,
+        rgba(23,22,20,0.75) 100%
+      );
+      z-index: 1;
     }
 
     .ambiance-inner {
       max-width: 1300px;
       margin: 0 auto;
+      position: relative;
+      z-index: 2; /* au-dessus du bg */
     }
 
     .ambiance-blocks {
@@ -636,11 +670,16 @@
 
     .ambiance-block {
       padding: 2rem;
-      border: 1px solid var(--border-glow);
+      border: 1px solid rgba(244, 197, 223, 0.2);
+      background: rgba(23, 22, 20, 0.55);
+      backdrop-filter: blur(6px);
       position: relative;
-      transition: border-color 0.3s;
+      transition: border-color 0.3s, background 0.3s;
     }
-    .ambiance-block:hover { border-color: rgba(244, 197, 223, 0.35); }
+    .ambiance-block:hover {
+      border-color: rgba(244, 197, 223, 0.5);
+      background: rgba(23, 22, 20, 0.7);
+    }
     .ambiance-block h3 {
       font-family: var(--font-brand);
       font-size: 1rem;
@@ -653,6 +692,29 @@
       line-height: 1.8;
     }
     .ambiance-block .a-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+
+    /* Indicateurs dots du carrousel */
+    .ambiance-dots {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .ambiance-dot {
+      width: 28px;
+      height: 3px;
+      background: rgba(255,255,255,0.25);
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s, width 0.3s;
+      padding: 0;
+    }
+    .ambiance-dot.active {
+      background: var(--red);
+      width: 44px;
+    }
 
     /* ─── PRICING ─── */
     #tarifs {
@@ -1282,6 +1344,15 @@
 
   <!-- AMBIANCE MANGA -->
   <section id="ambiance">
+
+    <!-- Carrousel background BG1-BG4 -->
+    <div class="ambiance-bg" id="ambianceBg">
+      <div class="ambiance-bg-slide active" style="background-image: url('asset/BG1.png');"></div>
+      <div class="ambiance-bg-slide"        style="background-image: url('asset/BG2.png');"></div>
+      <div class="ambiance-bg-slide"        style="background-image: url('asset/BG3.png');"></div>
+      <div class="ambiance-bg-slide"        style="background-image: url('asset/BG4.png');"></div>
+    </div>
+
     <div class="ambiance-inner">
       <div class="section-label">L'atmosphère</div>
       <h2 class="section-title">Vivre la culture<br />japonaise</h2>
@@ -1301,6 +1372,14 @@
           <h3>Décor Immersif</h3>
           <p>Affiches vintages, néons, cosplay corner photo — Otakofee est conçu pour vous faire sentir dans le quartier électrique de Tokyo, à deux pas de chez vous.</p>
         </div>
+      </div>
+
+      <!-- Dots de navigation -->
+      <div class="ambiance-dots" id="ambianceDots">
+        <button class="ambiance-dot active" data-index="0" aria-label="Image 1"></button>
+        <button class="ambiance-dot"        data-index="1" aria-label="Image 2"></button>
+        <button class="ambiance-dot"        data-index="2" aria-label="Image 3"></button>
+        <button class="ambiance-dot"        data-index="3" aria-label="Image 4"></button>
       </div>
     </div>
   </section>
@@ -1576,6 +1655,43 @@
         setTimeout(() => { submitBtn.textContent = 'Envoyer le message'; }, 3000);
       }
     });
+
+    // ─── CARROUSEL AMBIANCE ───
+    (function() {
+      const slides = document.querySelectorAll('.ambiance-bg-slide');
+      const dots   = document.querySelectorAll('.ambiance-dot');
+      if (!slides.length) return;
+
+      let current = 0;
+      let timer;
+
+      function goTo(index) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = index;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+
+      function next() {
+        goTo((current + 1) % slides.length);
+      }
+
+      function startAuto() {
+        timer = setInterval(next, 4000); // change toutes les 4s
+      }
+
+      // Clic sur les dots
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          clearInterval(timer);
+          goTo(parseInt(dot.dataset.index));
+          startAuto(); // relance le timer
+        });
+      });
+
+      startAuto();
+    })();
 
   </script>
 </body>
