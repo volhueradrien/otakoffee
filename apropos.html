@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>À propos – Otakoffee Reims</title>
+  <meta name="description" content="Otakoffee est le premier café manga et gaming café à Reims. Coffee shop, esport et culture japonaise réunis en un seul lieu." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Sawarabi+Mincho&display=swap" rel="stylesheet" />
+
+  <style>
+    @font-face {
+      font-family: 'AllRoundGothic';
+      src: url('asset/allroundgothic-bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --font-brand: 'AllRoundGothic', 'Nunito', 'Varela Round', sans-serif;
+      --bg-dark:    #171614;
+      --bg-card:    #1f1d1b;
+      --text-main:  #FFFFFF;
+      --text-muted: #a89f98;
+      --border-glow: rgba(206, 45, 79, 0.18);
+      --red:  #CE2D4F;
+      --rose: #F4C5DF;
+      --white: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Noto Sans JP', 'AllRoundGothic', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.4;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-dark); }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(23, 22, 20, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-glow);
+    }
+
+    .nav-logo {
+      font-family: var(--font-brand);
+      font-size: 1.4rem;
+      color: var(--red);
+      text-decoration: none;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+    }
+    .logo-img { height: 38px; width: auto; display: block; object-fit: contain; }
+    .logo-fallback { display: none; }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--red); }
+    .nav-back svg { transition: transform 0.2s; }
+    .nav-back:hover svg { transform: translateX(-3px); }
+
+    /* ─── HERO ABOUT ─── */
+    .about-hero {
+      padding: 10rem 3rem 5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .about-hero::before {
+      content: '';
+      position: fixed;
+      top: 0; right: 0;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(206,45,79,0.1) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--red);
+    }
+
+    .about-title {
+      font-family: var(--font-brand);
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .about-title span { color: var(--red); }
+
+    .about-subtitle {
+      font-family: 'Sawarabi Mincho', serif;
+      font-size: 1rem;
+      color: rgba(244, 197, 223, 0.5);
+      letter-spacing: 6px;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-lead {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.8);
+      max-width: 700px;
+      position: relative;
+      z-index: 1;
+      border-left: 2px solid var(--red);
+      padding-left: 1.5rem;
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      height: 1px;
+      background: var(--border-glow);
+      margin: 0 3rem;
+    }
+
+    /* ─── FEATURES GRID ─── */
+    .about-section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
+    }
+
+    .about-section-title {
+      font-family: var(--font-brand);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+    .about-section-title::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 2px;
+      background: var(--red);
+      margin-top: 0.8rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5px;
+      background: var(--border-glow);
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      padding: 2.5rem 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      transition: background 0.3s;
+    }
+    .feature-card:hover { background: #252220; }
+
+    .feature-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      background: rgba(206,45,79,0.1);
+      border: 1px solid var(--border-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .feature-text h3 {
+      font-family: var(--font-brand);
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .feature-text p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ─── POUR QUI ─── */
+    .audience-section {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border-glow);
+      border-bottom: 1px solid var(--border-glow);
+      padding: 5rem 3rem;
+    }
+
+    .audience-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .audience-text p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 1.5rem;
+    }
+
+    .audience-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+    .audience-tag {
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--border-glow);
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .audience-tag:hover { border-color: var(--rose); color: var(--rose); }
+
+    .audience-stat {
+      text-align: center;
+      padding: 2rem;
+      border: 1px solid var(--border-glow);
+      margin-bottom: 1rem;
+      transition: border-color 0.3s;
+    }
+    .audience-stat:hover { border-color: rgba(206,45,79,0.4); }
+    .audience-stat .num {
+      font-family: var(--font-brand);
+      font-size: 3rem;
+      color: var(--red);
+      display: block;
+      line-height: 1;
+    }
+    .audience-stat .label {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      display: block;
+    }
+
+    /* ─── EXPERIENCE ─── */
+    .experience-section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
+    }
+
+    .experience-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      margin-top: 2.5rem;
+    }
+
+    .experience-text p {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 1.5rem;
+    }
+
+    .experience-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .experience-list li {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .experience-list li::before {
+      content: '▸';
+      color: var(--red);
+      position: absolute;
+      left: 0;
+    }
+
+    /* ─── CTA ─── */
+    .about-cta {
+      background: linear-gradient(135deg, rgba(206,45,79,0.08), rgba(244,197,223,0.04));
+      border-top: 1px solid var(--border-glow);
+      text-align: center;
+      padding: 6rem 3rem;
+    }
+    .about-cta h2 {
+      font-family: var(--font-brand);
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
+      margin-bottom: 1rem;
+    }
+    .about-cta h2 span { color: var(--red); }
+    .about-cta p { color: var(--text-muted); margin-bottom: 2.5rem; font-size: 0.95rem; }
+
+    .btn-primary {
+      font-family: var(--font-brand);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      padding: 1rem 2.5rem;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover {
+      box-shadow: 0 0 30px rgba(206,45,79,0.6);
+      transform: translateY(-2px);
+    }
+
+    /* ─── FOOTER MINI ─── */
+    .about-footer {
+      background: #0e0c0b;
+      border-top: 1px solid var(--border-glow);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .about-footer a {
+      color: var(--rose);
+      text-decoration: none;
+    }
+    .about-footer a:hover { color: var(--white); }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .about-hero { padding: 8rem 1.5rem 4rem; }
+      .about-section, .experience-section { padding: 4rem 1.5rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .audience-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .experience-content { grid-template-columns: 1fr; gap: 2rem; }
+      .divider { margin: 0 1.5rem; }
+      .about-footer { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="asset/logo otakofee temp png V2.png" alt="Otakofee" class="logo-img"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
+      <span class="logo-fallback">Otakoffee</span>
+    </a>
+    <a href="index.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Retour au site
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="about-hero">
+    <div class="section-label">À propos</div>
+    <h1 class="about-title">Otakoffee<br /><span>Reims</span></h1>
+    <p class="about-subtitle">オタコフィー・ランス</p>
+    <p class="about-lead">
+      Otakoffee est le premier café manga et gaming café à Reims qui réunit coffee shop,
+      esport et culture japonaise dans un seul lieu. Boire un café, jouer sur PC, lire un manga
+      ou participer à une LAN : ici, tout est pensé pour offrir une expérience immersive et conviviale.
+    </p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- UN LIEU UNIQUE -->
+  <section class="about-section">
+    <h2 class="about-section-title reveal">Un lieu unique à Reims</h2>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon">☕</div>
+        <div class="feature-text">
+          <h3>Coffee shop & Bubble tea</h3>
+          <p>Des boissons chaudes, des bubble teas et des softs pour accompagner vos sessions. La consommation est incluse dans votre formule.</p>
+        </div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">📚</div>
+        <div class="feature-text">
+          <h3>Manga en libre accès</h3>
+          <p>Des centaines de volumes disponibles — shōnen, shōjo, seinen, isekai — à lire sur place dans une atmosphère zen et cocooning.</p>
+        </div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🎮</div>
+        <div class="feature-text">
+          <h3>PC gaming & Consoles</h3>
+          <p>30 postes PC haute performance avec écrans 144Hz, claviers mécaniques et fibre dédiée. Consoles disponibles pour les sessions détente.</p>
+        </div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🏆</div>
+        <div class="feature-text">
+          <h3>Tournois & LAN</h3>
+          <p>Des événements réguliers — tournois TCG, soirées gaming, LAN parties — pour rassembler et animer la communauté rémoise.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- POUR QUI -->
+  <section class="audience-section">
+    <div class="audience-inner">
+      <div class="audience-text">
+        <div class="section-label">Pour qui ?</div>
+        <h2 class="about-section-title reveal" style="margin-bottom:1.5rem;">La communauté<br/>rémoise</h2>
+        <p class="reveal">
+          Gamers, passionnés d'anime, étudiants ou groupes d'amis : Otakoffee est le point de rencontre
+          de la communauté. Un espace ouvert à tous, pensé pour le partage et la convivialité.
+        </p>
+        <div class="audience-tags reveal">
+          <span class="audience-tag">Gamers</span>
+          <span class="audience-tag">Otakus</span>
+          <span class="audience-tag">Étudiants</span>
+          <span class="audience-tag">Groupes d'amis</span>
+          <span class="audience-tag">Collectionneurs TCG</span>
+          <span class="audience-tag">Familles</span>
+        </div>
+      </div>
+      <div class="audience-stats reveal">
+        <div class="audience-stat">
+          <span class="num">30</span>
+          <span class="label">PC Gaming disponibles</span>
+        </div>
+        <div class="audience-stat">
+          <span class="num">500+</span>
+          <span class="label">Volumes manga</span>
+        </div>
+        <div class="audience-stat">
+          <span class="num">7j/7</span>
+          <span class="label">Ouvert toute la semaine</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- L'EXPÉRIENCE -->
+  <section class="experience-section">
+    <div class="section-label">Notre vision</div>
+    <h2 class="about-section-title reveal">L'expérience Otakoffee</h2>
+    <div class="experience-content">
+      <div class="experience-text reveal">
+        <p>
+          Un espace moderne, des événements réguliers et une ambiance unique font d'Otakoffee
+          une référence du gaming café à Reims. Chaque détail a été pensé pour créer un lieu
+          où l'on revient, où l'on se retrouve.
+        </p>
+        <p>
+          Que vous veniez seul pour une session gaming, en groupe pour un tournoi ou simplement
+          pour lire un manga autour d'un bubble tea — Otakoffee est votre espace.
+        </p>
+      </div>
+      <div class="reveal">
+        <ul class="experience-list">
+          <li>Ambiance japonaise immersive et décor soigné</li>
+          <li>Événements thématiques chaque semaine</li>
+          <li>Boutique TCG — Pokémon, One Piece, DBS</li>
+          <li>Goodies et figurines Japan importées</li>
+          <li>Communauté active et bienveillante</li>
+          <li>Formules accessibles dès 3€/heure</li>
+          <li>Espace adapté aux groupes et events privés</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="about-cta">
+    <h2>Rejoignez la <span>communauté</span></h2>
+    <p>Découvrez Otakoffee dès maintenant — venez vivre l'expérience à Reims.</p>
+    <a href="index.html#contact" class="btn-primary">Nous rejoindre</a>
+  </div>
+
+  <!-- FOOTER MINI -->
+  <footer class="about-footer">
+    <span>© 2025 Otakoffee Reims — Tous droits réservés</span>
+    <a href="index.html">← Retour au site</a>
+  </footer>
+
+  <script>
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // Légère cascade entre les éléments frères
+          const siblings = [...entry.target.parentElement.querySelectorAll('.reveal')];
+          const idx = siblings.indexOf(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, idx * 80);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
