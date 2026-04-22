@@ -950,6 +950,13 @@
     }
     /* Fallback texte si pas d'image */
     .logo-fallback { display: none; }
+    .logo-video {
+      height: 38px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      background: transparent;
+    }
 
     /* ─── PÉTALES DE SAKURA ─── */
     .sakura-container {
@@ -1134,6 +1141,107 @@
       .form-row { grid-template-columns: 1fr; }
     }
 
+    /* ─── MODAL NEWSLETTER ─── */
+    .newsletter-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(23, 22, 20, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .newsletter-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .newsletter-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glow);
+      max-width: 480px;
+      width: 100%;
+      padding: 3rem;
+      position: relative;
+      transform: translateY(24px);
+      transition: transform 0.3s ease;
+      text-align: center;
+    }
+    .newsletter-overlay.open .newsletter-box { transform: translateY(0); }
+    .newsletter-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--red), transparent);
+    }
+    .newsletter-close {
+      position: absolute;
+      top: 1.2rem; right: 1.2rem;
+      background: none;
+      border: 1px solid var(--border-glow);
+      color: var(--text-muted);
+      width: 32px; height: 32px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .newsletter-close:hover { border-color: var(--red); color: var(--red); }
+    .newsletter-icon { font-size: 2.5rem; display: block; margin-bottom: 1rem; }
+    .newsletter-title {
+      font-family: var(--font-brand);
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .newsletter-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .newsletter-form input[type="text"],
+    .newsletter-form input[type="email"] {
+      background: var(--bg-dark);
+      border: 1px solid var(--border-glow);
+      color: var(--white);
+      padding: 0.85rem 1rem;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      width: 100%;
+      transition: border-color 0.2s;
+    }
+    .newsletter-form input:focus { border-color: var(--red); }
+    .newsletter-form input::placeholder { color: var(--text-muted); opacity: 0.6; }
+    .newsletter-gdpr {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      text-align: left;
+    }
+    .newsletter-confirm {
+      font-size: 0.88rem;
+      color: #6fcf97;
+      margin-top: 0.5rem;
+      display: none;
+    }
+    .newsletter-error {
+      font-size: 0.82rem;
+      color: var(--red);
+      margin-top: 0.3rem;
+      display: none;
+    }
+
   </style>
 </head>
 <body>
@@ -1141,7 +1249,13 @@
   <!-- NAVBAR -->
   <nav>
     <a href="#" class="nav-logo">
-      <img src="asset/logo otakofee temp png V2.png" alt="Otakoffee" class="logo-img"
+      <video class="logo-img logo-video" autoplay loop muted playsinline
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <source src="asset/logo animé alleger.mov" type="video/quicktime" />
+        <source src="asset/logo animé alleger.mov" type="video/mp4" />
+      </video>
+      <img src="asset/logo otakofee temp png V2.png" alt="Otakoffee" class="logo-img logo-fallback-img"
+           style="display:none;"
            onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
       <span class="logo-fallback">Otakoffee</span>
     </a>
@@ -1202,7 +1316,28 @@
     </div>
   </div>
 
+  <!-- MODAL NEWSLETTER -->
+  <div class="newsletter-overlay" id="newsletterOverlay">
+    <div class="newsletter-box">
+      <button class="newsletter-close" id="closeNewsletter" aria-label="Fermer">✕</button>
+      <span class="newsletter-icon">📬</span>
+      <h2 class="newsletter-title">Rejoindre la newsletter</h2>
+      <p class="newsletter-sub">Reçois les actus Otakoffee — événements, tournois, nouvelles cartes et offres exclusives directement dans ta boîte mail.</p>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="text" id="nlPrenom" name="prenom" placeholder="Ton prénom" required />
+        <input type="email" id="nlEmail" name="email" placeholder="ton@email.com" required />
+        <p class="newsletter-gdpr">En t'inscrivant, tu acceptes de recevoir des emails de la part d'Otakoffee. Tu peux te désinscrire à tout moment. Tes données ne seront jamais partagées.</p>
+        <button type="submit" class="btn-primary" style="clip-path:none;padding:1rem;font-size:0.9rem;cursor:pointer;">
+          S'inscrire à la newsletter
+        </button>
+        <p class="newsletter-confirm" id="nlConfirm">✅ Inscription confirmée ! Bienvenue dans la communauté Otakoffee 🎌</p>
+        <p class="newsletter-error" id="nlError">❌ Une erreur est survenue. Réessaie dans un instant.</p>
+      </form>
+    </div>
+  </div>
+
   <!-- HERO -->
+
   <section class="hero">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
@@ -1483,7 +1618,13 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#" class="nav-logo">
-          <img src="asset/logo otakofee temp png V2.png" alt="Otakoffee" class="logo-img logo-img--footer"
+          <video class="logo-img logo-img--footer logo-video" autoplay loop muted playsinline
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+            <source src="asset/logo animé alleger.mov" type="video/quicktime" />
+            <source src="asset/logo animé alleger.mov" type="video/mp4" />
+          </video>
+          <img src="asset/logo otakofee temp png V2.png" alt="Otakoffee" class="logo-img logo-img--footer logo-fallback-img"
+               style="display:none;"
                onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
           <span class="logo-fallback">Otakoffee</span>
         </a>
@@ -1511,10 +1652,8 @@
         <h4>Informations</h4>
         <ul>
           <li><a href="apropos.html">À propos</a></li>
-          <li><a href="#">Événements</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Newsletter</a></li>
-          <li><a href="#">CGU</a></li>
+          <li><a href="#" id="openNewsletter">Newsletter</a></li>
+          <li><a href="cgu.html">CGU</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1740,6 +1879,75 @@
       });
 
       startAuto();
+    })();
+
+    // ─── MODAL NEWSLETTER ───
+    (function() {
+      const nlOverlay = document.getElementById('newsletterOverlay');
+      const nlOpen    = document.getElementById('openNewsletter');
+      const nlClose   = document.getElementById('closeNewsletter');
+      const nlForm    = document.getElementById('newsletterForm');
+      const nlConfirm = document.getElementById('nlConfirm');
+      const nlError   = document.getElementById('nlError');
+
+      if (!nlOverlay || !nlOpen) return;
+
+      function openNl()  { nlOverlay.classList.add('open');    document.body.style.overflow = 'hidden'; }
+      function closeNl() { nlOverlay.classList.remove('open'); document.body.style.overflow = ''; }
+
+      nlOpen.addEventListener('click',  (e) => { e.preventDefault(); openNl(); });
+      nlClose.addEventListener('click', closeNl);
+      nlOverlay.addEventListener('click', (e) => { if (e.target === nlOverlay) closeNl(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeNl(); });
+
+      nlForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn    = nlForm.querySelector('button[type="submit"]');
+        const prenom = document.getElementById('nlPrenom').value.trim();
+        const email  = document.getElementById('nlEmail').value.trim();
+
+        btn.textContent = 'Inscription en cours...';
+        btn.disabled = true;
+        nlConfirm.style.display = 'none';
+        nlError.style.display   = 'none';
+
+        // Brevo (ex-Sendinblue) API — gratuit jusqu'à 300 emails/jour
+        // Étape : créer un compte sur brevo.com → API Keys → créer une clé
+        // Puis créer une liste et noter son ID (ex: 3)
+        // Remplacer YOUR_BREVO_API_KEY et YOUR_LIST_ID ci-dessous
+        const BREVO_API_KEY = 'YOUR_BREVO_API_KEY';
+        const BREVO_LIST_ID = 3; // ID de ta liste Brevo
+
+        try {
+          const res = await fetch('https://api.brevo.com/v3/contacts', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'api-key': BREVO_API_KEY
+            },
+            body: JSON.stringify({
+              email:      email,
+              attributes: { PRENOM: prenom },
+              listIds:    [BREVO_LIST_ID],
+              updateEnabled: true
+            })
+          });
+
+          if (res.ok || res.status === 204) {
+            nlConfirm.style.display = 'block';
+            nlForm.reset();
+            btn.textContent = "S'inscrire à la newsletter";
+            btn.disabled = false;
+            setTimeout(() => { nlConfirm.style.display = 'none'; closeNl(); }, 4000);
+          } else {
+            throw new Error('Erreur API');
+          }
+        } catch(err) {
+          nlError.style.display = 'block';
+          btn.textContent = "S'inscrire à la newsletter";
+          btn.disabled = false;
+        }
+      });
     })();
 
   </script>

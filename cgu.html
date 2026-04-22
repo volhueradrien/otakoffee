@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CGU – Conditions Générales d'Utilisation | Otakoffee Reims</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    @font-face {
+      font-family: 'AllRoundGothic';
+      src: url('asset/allroundgothic-bold.otf') format('opentype');
+      font-weight: 700;
+      font-display: swap;
+    }
+
+    :root {
+      --font-brand: 'AllRoundGothic', 'Nunito', sans-serif;
+      --bg-dark:   #171614;
+      --bg-card:   #1f1d1b;
+      --text-main: #FFFFFF;
+      --text-muted:#a89f98;
+      --border-glow: rgba(206,45,79,0.18);
+      --red:  #CE2D4F;
+      --rose: #F4C5DF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Noto Sans JP', sans-serif;
+      line-height: 1.8;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-dark); }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(23,22,20,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-glow);
+    }
+    .nav-logo {
+      font-family: var(--font-brand);
+      font-size: 1.3rem;
+      color: var(--red);
+      text-decoration: none;
+    }
+    .logo-img { height: 36px; width: auto; display: block; object-fit: contain; }
+    .logo-video { height: 36px; width: auto; display: block; background: transparent; }
+    .logo-fallback { display: none; }
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--red); }
+
+    /* CONTENT */
+    .cgu-wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 9rem 2rem 6rem;
+    }
+
+    .cgu-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-glow);
+    }
+    .cgu-label {
+      font-size: 0.7rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .cgu-label::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--red);
+    }
+    .cgu-title {
+      font-family: var(--font-brand);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: 0.5rem;
+    }
+    .cgu-date {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* SECTIONS */
+    .cgu-section {
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: var(--bg-card);
+      border-left: 2px solid var(--red);
+    }
+
+    .cgu-section h2 {
+      font-family: var(--font-brand);
+      font-size: 1.1rem;
+      color: var(--rose);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .cgu-section h2 .num {
+      font-size: 0.75rem;
+      background: var(--red);
+      color: white;
+      width: 24px; height: 24px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-family: 'Georgia', serif;
+    }
+
+    .cgu-section p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 1rem;
+    }
+    .cgu-section p:last-child { margin-bottom: 0; }
+
+    .cgu-section ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 0.8rem 0;
+    }
+    .cgu-section ul li {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.7);
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .cgu-section ul li::before {
+      content: '▸';
+      color: var(--red);
+      position: absolute;
+      left: 0;
+    }
+
+    .cgu-section a {
+      color: var(--rose);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(244,197,223,0.3);
+      transition: color 0.2s;
+    }
+    .cgu-section a:hover { color: var(--white); }
+
+    /* FOOTER */
+    .cgu-footer {
+      background: #0e0c0b;
+      border-top: 1px solid var(--border-glow);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .cgu-footer a { color: var(--rose); text-decoration: none; }
+    .cgu-footer a:hover { color: white; }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.5rem; }
+      .cgu-wrapper { padding: 8rem 1.2rem 4rem; }
+      .cgu-footer { padding: 1.5rem; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <video class="logo-video" autoplay loop muted playsinline
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <source src="asset/logo animé alleger.mov" type="video/quicktime" />
+        <source src="asset/logo animé alleger.mov" type="video/mp4" />
+      </video>
+      <img src="asset/logo otakofee temp png V2.png" alt="Otakoffee" class="logo-img"
+           style="display:none;" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
+      <span class="logo-fallback">Otakoffee</span>
+    </a>
+    <a href="index.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Retour au site
+    </a>
+  </nav>
+
+  <div class="cgu-wrapper">
+
+    <div class="cgu-header">
+      <div class="cgu-label">Légal</div>
+      <h1 class="cgu-title">Conditions Générales<br />d'Utilisation</h1>
+      <p class="cgu-date">Dernière mise à jour : avril 2025 — Otakoffee, Reims (France)</p>
+    </div>
+
+    <div class="cgu-section">
+      <h2><span class="num">1</span> Présentation</h2>
+      <p>Le site <strong>otakoffee.fr</strong> (ci-après "le Site") est édité par <strong>Otakoffee</strong>, café manga et gaming café situé à Reims, France.</p>
+      <p>Contact : <a href="mailto:otakoffee.hub@gmail.com">otakoffee.hub@gmail.com</a></p>
+      <p>En accédant au Site, vous acceptez sans réserve les présentes Conditions Générales d'Utilisation (CGU). Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser ce Site.</p>
+    </div>
+
+    <div class="cgu-section">
+      <h2><span class="num">2</span> Accès au site</h2>
+      <p>Le Site est accessible gratuitement à tout utilisateur disposant d'un accès à Internet. Tous les frais liés à l'accès au Site (connexion Internet, matériel informatique) sont à la charge de l'utilisateur.</p>
+      <p>Otakoffee se réserve le droit de modifier, suspendre ou interrompre l'accès au Site à tout moment, sans préavis ni indemnité.</p>
+    </div>
+
+    <div class="cgu-section">
+      <h2><span class="num">3</span> Propriété intellectuelle</h2>
+      <p>L'ensemble des éléments composant le Site (textes, images, logos, vidéos, graphismes, etc.) sont la propriété exclusive d'Otakoffee ou de ses partenaires et sont protégés par le droit de la propriété intellectuelle.</p>
+      <p>Toute reproduction, représentation, modification ou exploitation, totale ou partielle, est interdite sans autorisation écrite préalable d'Otakoffee.</p>
+      <p>Les marques mentionnées sur ce site (Pokémon, One Piece, Dragon Ball Super, etc.) sont la propriété de leurs détenteurs respectifs.</p>
+    </div>
+
+    <div class="cgu-section">
+      <h2><span class="num">4</span> Responsabilité</h2>
+      <p>Otakoffee s'efforce de fournir des informations exactes et à jour. Toutefois, nous ne garantissons pas l'exactitude, l'exhaustivité ou l'actualité des informations diffusées sur le Site.</p>
+      <p>Otakoffee ne saurait être tenu responsable :</p>
+      <ul>
+        <li>Des dommages directs ou indirects liés à l'utilisation du Site</li>
+        <li>D'une interruption ou indisponibilité du Site</li>
+        <li>Du contenu des sites tiers accessibles via des liens hypertextes</li>
+        <li>De toute intrusion malveillante d'un tiers ayant entraîné une modification des informations</li>
+      </ul>
+    </div>
+
+    <div class="cgu-section">
+      <h2><span class="num">5</span> Données personnelles</h2>
+      <p>Otakoffee collecte des données personnelles dans le cadre du formulaire de contact et de la newsletter (prénom, adresse email). Ces données sont utilisées exclusivement pour :</p>
+      <ul>
+        <li>Répondre aux demandes de contact</li>
+        <li>Envoyer la newsletter Otakoffee aux abonnés volontaires</li>
+      </ul>
+      <p>Conformément au Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679), vous disposez des droits suivants :</p>
+      <ul>
+        <li><strong>Droit d'accès</strong> à vos données personnelles</li>
+        <li><strong>Droit de rectification</strong> de données inexactes</li>
+        <li><strong>Droit à l'effacement</strong> (droit à l'oubli)</li>
+        <li><strong>Droit d'opposition</strong> au traitement de vos données</li>
+        <li><strong>Droit à la portabilité</strong> de vos données</li>
+      </ul>
+      <p>Pour exercer ces droits, contactez-nous à : <a href="mailto:otakoffee.hub@gmail.com">otakoffee.hub@gmail.com</a></p>
+      <p>Vos données ne sont jamais vendues ni transmises à des tiers à des fins commerciales.</p>
+    </div>
+
+    <div class="cgu-section">
+      <h2><span class="num">6</span> Newsletter</h2>
+      <p>En s'inscrivant à la newsletter Otakoffee, l'utilisateur consent expressément à recevoir des communications par email concernant les actualités, événements et offres d'Otakoffee.</p>
+      <p>Chaque email contient un lien de désinscription permettant à l'utilisateur de se désabonner à tout moment. La désinscription est effective immédiatement.</p>
+    </div>
+
+    <div class="cgu-section">
+      <h2><span class="num">7</span> Cookies</h2>
+      <p>Le Site peut utiliser des cookies techniques nécessaires à son bon fonctionnement. Aucun cookie publicitaire ou de traçage n'est utilisé sans votre consentement explicite.</p>
+      <p>Vous pouvez configurer votre navigateur pour refuser les cookies. Cela peut cependant affecter certaines fonctionnalités du Site.</p>
+    </div>
+
+    <div class="cgu-section">
+      <h2><span class="num">8</span> Liens hypertextes</h2>
+      <p>Le Site contient des liens vers des sites tiers (Pokémon, One Piece, Dragon Ball Super, Mangafactory, etc.). Ces liens sont fournis à titre informatif. Otakoffee n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.</p>
+    </div>
+
+    <div class="cgu-section">
+      <h2><span class="num">9</span> Droit applicable</h2>
+      <p>Les présentes CGU sont soumises au droit français. En cas de litige, les tribunaux compétents du ressort de Reims (France) seront seuls habilités.</p>
+      <p>Toute contestation relative à l'application de ces CGU sera soumise à une tentative de résolution amiable avant tout recours judiciaire.</p>
+    </div>
+
+    <div class="cgu-section">
+      <h2><span class="num">10</span> Modification des CGU</h2>
+      <p>Otakoffee se réserve le droit de modifier les présentes CGU à tout moment. Les modifications prennent effet dès leur publication sur le Site. Il appartient à l'utilisateur de consulter régulièrement les CGU.</p>
+      <p>En cas de désaccord avec les nouvelles CGU, l'utilisateur doit cesser d'utiliser le Site.</p>
+    </div>
+
+  </div>
+
+  <footer class="cgu-footer">
+    <span>© 2025 Otakoffee Reims — Tous droits réservés</span>
+    <a href="index.html">← Retour au site</a>
+  </footer>
+
+</body>
+</html>
