@@ -85,13 +85,15 @@
     .nav-logo {
       font-family: var(--font-brand);
       font-size: 1.4rem;
-      color: var(--red);
-      text-shadow: 0 0 20px var(--red), 0 0 40px rgba(206, 45, 79, 0.3);
+      color: var(--rose);
       letter-spacing: 2px;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
     }
 
-    .nav-logo span { color: var(--red); }
+    .nav-logo span { color: var(--rose); }
 
     .nav-links {
       display: flex;
@@ -939,17 +941,26 @@
     }
     /* ─── LOGO IMAGE ─── */
     .logo-img {
-      height: 38px;
+      height: 52px;
       width: auto;
       display: block;
       object-fit: contain;
+      /* Supprime le fond noir du PNG */
+      mix-blend-mode: screen;
     }
     .logo-img--footer {
-      height: 32px;
-      margin-bottom: 1rem;
+      height: 44px;
+      margin-bottom: 0.5rem;
+      mix-blend-mode: screen;
     }
     /* Fallback texte si pas d'image */
     .logo-fallback { display: none; }
+    .logo-name {
+      font-family: var(--font-brand);
+      font-size: 1.2rem;
+      color: var(--rose);
+      letter-spacing: 2px;
+    }
     .logo-video {
       height: 38px;
       width: auto;
@@ -1249,14 +1260,9 @@
   <!-- NAVBAR -->
   <nav>
     <a href="#" class="nav-logo">
-      <video class="logo-img logo-video" autoplay loop muted playsinline
-             onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-        <source src="asset/asset_logo animé alleger.webm" type="video/webm" />
-      </video>
-      <img src="asset/logo otakofee temp png V2.png" alt="Otakoffee" class="logo-img logo-fallback-img"
-           style="display:none;"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
-      <span class="logo-fallback">Otakoffee</span>
+      <img src="asset/logo otakofee temp png V2.png" alt="Otakoffee" class="logo-img"
+           onerror="this.style.display='none';" />
+      <span class="logo-name">Otakoffee</span>
     </a>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
@@ -1616,15 +1622,10 @@
   <footer id="contact">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="#" class="nav-logo">
-          <video class="logo-img logo-img--footer logo-video" autoplay loop muted playsinline
-                 onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-            <source src="asset_logo animé alleger.webm" type="video/webm" />
-          </video>
-          <img src="asset/logo otakofee temp png V2.png" alt="Otakoffee" class="logo-img logo-img--footer logo-fallback-img"
-               style="display:none;"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='inline';" />
-          <span class="logo-fallback">Otakoffee</span>
+        <a href="#" class="nav-logo" style="margin-bottom:1rem;">
+          <img src="asset/logo otakofee temp png V2.png" alt="Otakoffee" class="logo-img logo-img--footer"
+               onerror="this.style.display='none';" />
+          <span class="logo-name">Otakoffee</span>
         </a>
         <p>Le manga café et gaming center qui fait voyager au cœur du Japon. Culture, jeu et communauté — tout sous un même toit.</p>
         <div class="social-links">
