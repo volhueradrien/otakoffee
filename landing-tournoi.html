@@ -322,36 +322,88 @@
 
     /* ─── LAN SECTION ─── */
     .lan-section {
-      background: var(--bg-card);
       border-top: 1px solid var(--border-glow);
       border-bottom: 1px solid var(--border-glow);
       padding: 6rem 3rem;
+      position: relative;
+      overflow: hidden;
     }
+
+    /* ── Carrousel background LAN ── */
+    .lan-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .lan-bg-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+    }
+    .lan-bg-slide.active { opacity: 1; }
+    .lan-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(23,22,20,0.88) 0%,
+        rgba(23,22,20,0.65) 50%,
+        rgba(23,22,20,0.75) 100%
+      );
+      z-index: 1;
+    }
+
     .lan-inner {
       max-width: 1200px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 5rem; align-items: center;
+      position: relative; z-index: 2;
     }
     .lan-content .section-title { margin-bottom: 1.5rem; }
     .lan-content p {
-      font-size: 0.95rem; color: rgba(255,255,255,0.75);
+      font-size: 0.95rem; color: rgba(255,255,255,0.85);
       line-height: 1.9; margin-bottom: 1.5rem;
+      /* Nunito pour les apostrophes et tirets */
+      font-family: 'Nunito', 'Noto Sans JP', sans-serif;
     }
     .lan-features {
       list-style: none; display: flex; flex-direction: column; gap: 0.8rem;
       margin-bottom: 2rem;
     }
     .lan-features li {
-      font-size: 0.88rem; color: var(--text-muted);
+      font-size: 0.88rem; color: rgba(255,255,255,0.75);
       padding-left: 1.2rem; position: relative;
+      /* Nunito pour les tirets dans les listes */
+      font-family: 'Nunito', 'Noto Sans JP', sans-serif;
     }
     .lan-features li::before { content: '▸'; color: var(--red); position: absolute; left: 0; }
+
+    /* Dots carrousel LAN */
+    .lan-dots {
+      display: flex; gap: 8px;
+      margin-top: 2rem;
+      position: relative; z-index: 2;
+    }
+    .lan-dot {
+      width: 24px; height: 3px;
+      background: rgba(255,255,255,0.2);
+      border: none; cursor: pointer;
+      transition: background 0.3s, width 0.3s;
+      padding: 0;
+    }
+    .lan-dot.active { background: var(--red); width: 38px; }
 
     .lan-specs {
       display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
     }
     .lan-spec {
-      background: var(--bg-dark); padding: 1.2rem;
+      background: rgba(23,22,20,0.7);
+      backdrop-filter: blur(6px);
+      padding: 1.2rem;
       border-left: 2px solid var(--red); text-align: left;
     }
     .lan-spec strong {
@@ -644,6 +696,14 @@
 
   <!-- LAN -->
   <section class="lan-section">
+
+    <!-- Carrousel background bgt1/bgt2/bgt3 -->
+    <div class="lan-bg" id="lanBg">
+      <div class="lan-bg-slide active" style="background-image: url('asset/bgt1.jpg');"></div>
+      <div class="lan-bg-slide"        style="background-image: url('asset/bgt2.jpg');"></div>
+      <div class="lan-bg-slide"        style="background-image: url('asset/bgt3.jpg');"></div>
+    </div>
+
     <div class="lan-inner">
       <div class="lan-content">
         <div class="section-label">Gaming</div>
@@ -662,6 +722,13 @@
           <li>Prix et goodies pour les vainqueurs</li>
         </ul>
         <a href="#inscription" class="btn-primary">Réserver pour la prochaine LAN</a>
+
+        <!-- Dots navigation -->
+        <div class="lan-dots" id="lanDots">
+          <button class="lan-dot active" data-index="0" aria-label="Image 1"></button>
+          <button class="lan-dot"        data-index="1" aria-label="Image 2"></button>
+          <button class="lan-dot"        data-index="2" aria-label="Image 3"></button>
+        </div>
       </div>
       <div class="lan-specs reveal">
         <div class="lan-spec">
@@ -970,6 +1037,34 @@
         btn.disabled = false;
       }
     });
+    // ─── CARROUSEL LAN ───
+    (function() {
+      const slides = document.querySelectorAll('.lan-bg-slide');
+      const dots   = document.querySelectorAll('.lan-dot');
+      if (!slides.length) return;
+      let current = 0, timer;
+
+      function goTo(i) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = i;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+      function next() { goTo((current + 1) % slides.length); }
+      function startAuto() { timer = setInterval(next, 4000); }
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          clearInterval(timer);
+          goTo(parseInt(dot.dataset.index));
+          startAuto();
+        });
+      });
+
+      startAuto();
+    })();
+
   </script>
 
 </body>
