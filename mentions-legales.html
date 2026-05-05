@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentions Légales — Otakoffee Reims</title>
+  <meta name="description" content="Mentions légales du site Otakoffee Reims — café manga et gaming café." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    @font-face {
+      font-family: 'AllRoundGothic';
+      src: url('asset/allroundgothic-bold.otf') format('opentype');
+      font-weight: 700;
+      font-display: swap;
+      unicode-range: U+0041-005A, U+0061-007A, U+00C0-00FF, U+0030-0039;
+    }
+
+    :root {
+      --font-brand: 'AllRoundGothic', 'Nunito', sans-serif;
+      --bg-dark:   #171614;
+      --bg-card:   #1f1d1b;
+      --text-main: #FFFFFF;
+      --text-muted:#a89f98;
+      --border-glow: rgba(206, 45, 79, 0.18);
+      --red:  #CE2D4F;
+      --rose: #F4C5DF;
+      --white: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Nunito', 'Noto Sans JP', sans-serif;
+      line-height: 1.8;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-dark); }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(23,22,20,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-glow);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.5rem;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 40px; width: auto;
+      mix-blend-mode: screen;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .nav-logo img:hover { transform: scale(1.15) rotate(-4deg); }
+    .nav-logo-name {
+      font-family: var(--font-brand);
+      font-size: 1.1rem; color: var(--rose); letter-spacing: 2px;
+    }
+    .nav-back {
+      display: flex; align-items: center; gap: 0.5rem;
+      color: var(--text-muted); text-decoration: none;
+      font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--red); }
+
+    .page-wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 9rem 2rem 6rem;
+    }
+
+    .page-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-glow);
+    }
+    .page-label {
+      font-size: 0.7rem; letter-spacing: 5px; text-transform: uppercase;
+      color: var(--red); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .page-label::before {
+      content: ''; display: block;
+      width: 30px; height: 1px; background: var(--red);
+    }
+    .page-title {
+      font-family: var(--font-brand);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: 0.5rem; line-height: 1.1;
+    }
+    .page-date { font-size: 0.82rem; color: var(--text-muted); }
+
+    .legal-section {
+      margin-bottom: 2.5rem;
+      padding: 2rem;
+      background: var(--bg-card);
+      border-left: 2px solid var(--red);
+    }
+    .legal-section h2 {
+      font-family: var(--font-brand);
+      font-size: 1.05rem; color: var(--rose);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .legal-section h2 .num {
+      font-size: 0.72rem;
+      background: var(--red); color: white;
+      width: 22px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-family: 'Nunito', sans-serif;
+    }
+    .legal-section p {
+      font-size: 0.9rem; color: rgba(255,255,255,0.75);
+      margin-bottom: 0.8rem; line-height: 1.8;
+    }
+    .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section ul {
+      list-style: none; margin: 0.8rem 0;
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .legal-section ul li {
+      font-size: 0.88rem; color: rgba(255,255,255,0.7);
+      padding-left: 1.2rem; position: relative;
+    }
+    .legal-section ul li::before { content: '▸'; color: var(--red); position: absolute; left: 0; }
+    .legal-section a { color: var(--rose); text-decoration: none; border-bottom: 1px solid rgba(244,197,223,0.3); }
+    .legal-section a:hover { color: var(--white); }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .info-item {
+      background: var(--bg-dark);
+      padding: 1rem 1.2rem;
+      border-left: 2px solid rgba(206,45,79,0.4);
+    }
+    .info-item strong {
+      font-size: 0.72rem; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--rose);
+      display: block; margin-bottom: 0.3rem;
+    }
+    .info-item span {
+      font-size: 0.88rem; color: rgba(255,255,255,0.75);
+    }
+
+    footer {
+      background: #0e0c0b;
+      border-top: 1px solid var(--border-glow);
+      padding: 2rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.78rem; color: var(--text-muted);
+      flex-wrap: wrap; gap: 1rem;
+    }
+    footer a { color: var(--rose); text-decoration: none; }
+    footer a:hover { color: var(--white); }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.5rem; }
+      .page-wrapper { padding: 8rem 1.2rem 4rem; }
+      .info-grid { grid-template-columns: 1fr; }
+      footer { padding: 1.5rem; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="asset/logo otakofee temp png V2.png" alt="Otakoffee"
+           onerror="this.style.display='none';" />
+      <span class="nav-logo-name">Otakoffee</span>
+    </a>
+    <a href="index.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Retour au site
+    </a>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <div class="page-header">
+      <div class="page-label">Légal</div>
+      <h1 class="page-title">Mentions<br />Légales</h1>
+      <p class="page-date">Dernière mise à jour : mai 2025 — Otakoffee, Reims (France)</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">1</span> Éditeur du site</h2>
+      <div class="info-grid">
+        <div class="info-item">
+          <strong>Nom de l'établissement</strong>
+          <span>Otakoffee</span>
+        </div>
+        <div class="info-item">
+          <strong>Forme</strong>
+          <span>Établissement indépendant</span>
+        </div>
+        <div class="info-item">
+          <strong>Ville</strong>
+          <span>Reims, France</span>
+        </div>
+        <div class="info-item">
+          <strong>Email</strong>
+          <span><a href="mailto:otakoffee.hub@gmail.com">otakoffee.hub@gmail.com</a></span>
+        </div>
+        <div class="info-item">
+          <strong>Site web</strong>
+          <span>otakoffee.fr</span>
+        </div>
+        <div class="info-item">
+          <strong>Horaires</strong>
+          <span>Lun — Dim, 10h — 00h</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">2</span> Hébergement</h2>
+      <p>Le site Otakoffee est hébergé par :</p>
+      <div class="info-grid">
+        <div class="info-item">
+          <strong>Hébergeur</strong>
+          <span>GitHub Pages</span>
+        </div>
+        <div class="info-item">
+          <strong>Société</strong>
+          <span>GitHub Inc. (filiale Microsoft)</span>
+        </div>
+        <div class="info-item">
+          <strong>Adresse</strong>
+          <span>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA</span>
+        </div>
+        <div class="info-item">
+          <strong>Site</strong>
+          <span><a href="https://pages.github.com" target="_blank" rel="noopener">pages.github.com</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">3</span> Propriété intellectuelle</h2>
+      <p>L'ensemble des contenus présents sur le site Otakoffee (textes, images, logos, graphismes, animations, charte graphique) sont la propriété exclusive d'Otakoffee, sauf mention contraire.</p>
+      <p>Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite sans autorisation écrite préalable.</p>
+      <p>Les marques et logos tiers mentionnés sur ce site (Pokémon, One Piece, Dragon Ball Super, etc.) sont la propriété de leurs détenteurs respectifs et sont utilisés à des fins d'information uniquement.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">4</span> Responsabilité</h2>
+      <p>Otakoffee s'efforce de maintenir les informations du site à jour et exactes. Toutefois, nous ne saurions garantir l'exactitude, la complétude ou l'actualité des informations diffusées.</p>
+      <p>En conséquence, Otakoffee décline toute responsabilité :</p>
+      <ul>
+        <li>Pour toute imprécision, inexactitude ou omission portant sur les informations disponibles</li>
+        <li>Pour tout dommage résultant d'une intrusion frauduleuse d'un tiers</li>
+        <li>Pour tout dommage résultant de l'utilisation d'informations provenant de sites tiers liés</li>
+        <li>Pour toute interruption ou indisponibilité du site</li>
+      </ul>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">5</span> Liens hypertextes</h2>
+      <p>Le site Otakoffee peut contenir des liens vers des sites web tiers. Ces liens sont fournis à titre informatif uniquement. Otakoffee n'exerce aucun contrôle sur le contenu de ces sites et décline toute responsabilité quant à leur contenu ou leur politique de confidentialité.</p>
+      <p>La création de liens hypertextes vers le site Otakoffee est autorisée sans accord préalable, à condition que le lien ne soit pas utilisé à des fins commerciales ou publicitaires et qu'il n'induise pas en erreur sur la nature du site.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">6</span> Données personnelles</h2>
+      <p>Le traitement des données personnelles collectées via ce site est décrit dans notre <a href="politique-confidentialite.html">Politique de Confidentialité</a>.</p>
+      <p>Conformément au Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679), vous disposez de droits sur vos données. Pour toute demande : <a href="mailto:otakoffee.hub@gmail.com">otakoffee.hub@gmail.com</a></p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">7</span> Cookies</h2>
+      <p>Le site Otakoffee n'utilise pas de cookies publicitaires ou de traçage. Seuls des cookies techniques strictement nécessaires au fonctionnement du site peuvent être déposés par les services tiers utilisés (Google Fonts, GitHub Pages).</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">8</span> Droit applicable et juridiction</h2>
+      <p>Les présentes mentions légales sont soumises au droit français. En cas de litige relatif à l'interprétation ou à l'exécution des présentes, et à défaut de résolution amiable, les tribunaux compétents du ressort de <strong>Reims (51)</strong> seront seuls compétents.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">9</span> Contact</h2>
+      <p>Pour toute question relative aux mentions légales ou au site internet :</p>
+      <ul>
+        <li>Email : <a href="mailto:otakoffee.hub@gmail.com">otakoffee.hub@gmail.com</a></li>
+        <li>Instagram : <a href="https://www.instagram.com/volhuer_adrien/?hl=fr" target="_blank" rel="noopener">@volhuer_adrien</a></li>
+        <li>Twitter/X : <a href="https://x.com/OTK_Franki" target="_blank" rel="noopener">@OTK_Franki</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer>
+    <span>© 2025 Otakoffee Reims — Tous droits réservés</span>
+    <span>
+      <a href="index.html">← Retour au site</a> &nbsp;·&nbsp;
+      <a href="cgu.html">CGU</a> &nbsp;·&nbsp;
+      <a href="politique-confidentialite.html">Confidentialité</a>
+    </span>
+  </footer>
+
+</body>
+</html>

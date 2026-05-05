@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Politique de Confidentialité — Otakoffee Reims</title>
+  <meta name="description" content="Politique de confidentialité et protection des données personnelles d'Otakoffee Reims." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    @font-face {
+      font-family: 'AllRoundGothic';
+      src: url('asset/allroundgothic-bold.otf') format('opentype');
+      font-weight: 700;
+      font-display: swap;
+      unicode-range: U+0041-005A, U+0061-007A, U+00C0-00FF, U+0030-0039;
+    }
+
+    :root {
+      --font-brand: 'AllRoundGothic', 'Nunito', sans-serif;
+      --bg-dark:   #171614;
+      --bg-card:   #1f1d1b;
+      --text-main: #FFFFFF;
+      --text-muted:#a89f98;
+      --border-glow: rgba(206, 45, 79, 0.18);
+      --red:  #CE2D4F;
+      --rose: #F4C5DF;
+      --white: #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Nunito', 'Noto Sans JP', sans-serif;
+      line-height: 1.8;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-dark); }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(23,22,20,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-glow);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.5rem;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 40px; width: auto;
+      mix-blend-mode: screen;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .nav-logo img:hover { transform: scale(1.15) rotate(-4deg); }
+    .nav-logo-name {
+      font-family: var(--font-brand);
+      font-size: 1.1rem; color: var(--rose); letter-spacing: 2px;
+    }
+    .nav-back {
+      display: flex; align-items: center; gap: 0.5rem;
+      color: var(--text-muted); text-decoration: none;
+      font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--red); }
+
+    .page-wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 9rem 2rem 6rem;
+    }
+
+    .page-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-glow);
+    }
+    .page-label {
+      font-size: 0.7rem; letter-spacing: 5px; text-transform: uppercase;
+      color: var(--red); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .page-label::before {
+      content: ''; display: block;
+      width: 30px; height: 1px; background: var(--red);
+    }
+    .page-title {
+      font-family: var(--font-brand);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: 0.5rem; line-height: 1.1;
+    }
+    .page-date { font-size: 0.82rem; color: var(--text-muted); }
+
+    .legal-section {
+      margin-bottom: 2.5rem;
+      padding: 2rem;
+      background: var(--bg-card);
+      border-left: 2px solid var(--red);
+    }
+    .legal-section h2 {
+      font-family: var(--font-brand);
+      font-size: 1.05rem; color: var(--rose);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .legal-section h2 .num {
+      font-size: 0.72rem;
+      background: var(--red); color: white;
+      width: 22px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-family: 'Nunito', sans-serif;
+    }
+    .legal-section p {
+      font-size: 0.9rem; color: rgba(255,255,255,0.75);
+      margin-bottom: 0.8rem; line-height: 1.8;
+    }
+    .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section ul {
+      list-style: none; margin: 0.8rem 0;
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .legal-section ul li {
+      font-size: 0.88rem; color: rgba(255,255,255,0.7);
+      padding-left: 1.2rem; position: relative;
+    }
+    .legal-section ul li::before { content: '▸'; color: var(--red); position: absolute; left: 0; }
+    .legal-section a { color: var(--rose); text-decoration: none; border-bottom: 1px solid rgba(244,197,223,0.3); }
+    .legal-section a:hover { color: var(--white); }
+
+    .highlight-box {
+      background: rgba(206,45,79,0.08);
+      border: 1px solid var(--border-glow);
+      padding: 1.2rem 1.5rem;
+      margin: 1rem 0;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    footer {
+      background: #0e0c0b;
+      border-top: 1px solid var(--border-glow);
+      padding: 2rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.78rem; color: var(--text-muted);
+      flex-wrap: wrap; gap: 1rem;
+    }
+    footer a { color: var(--rose); text-decoration: none; }
+    footer a:hover { color: var(--white); }
+
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.5rem; }
+      .page-wrapper { padding: 8rem 1.2rem 4rem; }
+      footer { padding: 1.5rem; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="asset/logo otakofee temp png V2.png" alt="Otakoffee"
+           onerror="this.style.display='none';" />
+      <span class="nav-logo-name">Otakoffee</span>
+    </a>
+    <a href="index.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Retour au site
+    </a>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <div class="page-header">
+      <div class="page-label">Légal</div>
+      <h1 class="page-title">Politique de<br />Confidentialité</h1>
+      <p class="page-date">Dernière mise à jour : mai 2025 — Otakoffee, Reims (France)</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">1</span> Introduction</h2>
+      <p>Otakoffee ("nous", "notre") accorde une grande importance à la protection de vos données personnelles. La présente politique de confidentialité décrit comment nous collectons, utilisons et protégeons vos informations lorsque vous utilisez notre site internet et nos services.</p>
+      <p>Cette politique s'applique à l'ensemble des données collectées via le site <strong>otakoffee.fr</strong>, le formulaire de contact, la newsletter et le formulaire d'inscription aux tournois.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">2</span> Responsable du traitement</h2>
+      <p><strong>Otakoffee</strong><br />
+      Reims, France<br />
+      Email : <a href="mailto:otakoffee.hub@gmail.com">otakoffee.hub@gmail.com</a></p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">3</span> Données collectées</h2>
+      <p>Nous collectons uniquement les données que vous nous fournissez volontairement :</p>
+      <ul>
+        <li><strong>Formulaire de contact</strong> : prénom, nom, adresse email, sujet et message</li>
+        <li><strong>Newsletter</strong> : prénom et adresse email</li>
+        <li><strong>Inscription aux tournois</strong> : prénom, nom, email, téléphone (optionnel), événement choisi et niveau</li>
+      </ul>
+      <p>Nous ne collectons aucune donnée de navigation, aucun cookie de traçage, et aucune donnée sensible (bancaire, médicale, etc.).</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">4</span> Finalités du traitement</h2>
+      <p>Vos données sont utilisées exclusivement pour :</p>
+      <ul>
+        <li>Répondre à vos demandes de contact</li>
+        <li>Envoyer la newsletter Otakoffee (actualités, événements, offres) aux abonnés volontaires</li>
+        <li>Gérer les inscriptions aux tournois et soirées LAN</li>
+        <li>Vous contacter pour confirmer votre participation à un événement</li>
+      </ul>
+      <div class="highlight-box">
+        Vos données ne sont jamais vendues, louées ou transmises à des tiers à des fins commerciales.
+      </div>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">5</span> Base légale du traitement</h2>
+      <p>Conformément au RGPD (Règlement UE 2016/679), le traitement de vos données repose sur :</p>
+      <ul>
+        <li><strong>Votre consentement</strong> — pour la newsletter et les formulaires de contact</li>
+        <li><strong>L'exécution d'un contrat</strong> — pour la gestion des inscriptions aux tournois</li>
+        <li><strong>Notre intérêt légitime</strong> — pour répondre à vos demandes et améliorer nos services</li>
+      </ul>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">6</span> Durée de conservation</h2>
+      <ul>
+        <li><strong>Données de contact</strong> : conservées 1 an après le dernier échange</li>
+        <li><strong>Newsletter</strong> : jusqu'à désinscription de votre part</li>
+        <li><strong>Inscriptions tournois</strong> : 6 mois après l'événement</li>
+      </ul>
+      <p>Au-delà de ces délais, vos données sont supprimées de façon définitive.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">7</span> Sous-traitants et services tiers</h2>
+      <p>Pour le fonctionnement du site, nous utilisons les services tiers suivants :</p>
+      <ul>
+        <li><strong>Formspree</strong> — traitement des formulaires de contact et d'inscription (serveurs USA, Privacy Shield)</li>
+        <li><strong>Brevo (ex-Sendinblue)</strong> — envoi de la newsletter (serveurs UE)</li>
+        <li><strong>GitHub Pages</strong> — hébergement du site (Microsoft, serveurs UE/USA)</li>
+        <li><strong>Google Fonts</strong> — polices d'écriture (Google LLC, USA)</li>
+      </ul>
+      <p>Ces prestataires sont soumis à leurs propres politiques de confidentialité et ne traitent vos données que dans le cadre des services qu'ils nous fournissent.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">8</span> Vos droits</h2>
+      <p>Conformément au RGPD, vous disposez des droits suivants sur vos données personnelles :</p>
+      <ul>
+        <li><strong>Droit d'accès</strong> : obtenir une copie de vos données</li>
+        <li><strong>Droit de rectification</strong> : corriger des données inexactes</li>
+        <li><strong>Droit à l'effacement</strong> : demander la suppression de vos données</li>
+        <li><strong>Droit d'opposition</strong> : vous opposer à un traitement</li>
+        <li><strong>Droit à la portabilité</strong> : recevoir vos données dans un format structuré</li>
+        <li><strong>Droit de retrait du consentement</strong> : à tout moment, sans affecter les traitements antérieurs</li>
+      </ul>
+      <div class="highlight-box">
+        Pour exercer vos droits, contactez-nous à : <a href="mailto:otakoffee.hub@gmail.com">otakoffee.hub@gmail.com</a><br />
+        Nous nous engageons à répondre dans un délai de 30 jours.
+      </div>
+      <p>Vous avez également le droit d'introduire une réclamation auprès de la <strong>CNIL</strong> (Commission Nationale de l'Informatique et des Libertés) — <a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a></p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">9</span> Cookies</h2>
+      <p>Notre site n'utilise <strong>aucun cookie publicitaire ou de traçage</strong>. Seuls des cookies techniques strictement nécessaires au bon fonctionnement du site peuvent être déposés. Aucun consentement n'est requis pour ces cookies.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">10</span> Sécurité</h2>
+      <p>Nous mettons en oeuvre les mesures techniques appropriées pour protéger vos données contre tout accès non autorisé, perte ou divulgation. Le site est hébergé en HTTPS (connexion chiffrée) et les formulaires transitent via des services sécurisés.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2><span class="num">11</span> Modifications</h2>
+      <p>Nous nous réservons le droit de modifier cette politique à tout moment. Toute modification sera publiée sur cette page avec la date de mise à jour. Nous vous encourageons à la consulter régulièrement.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <span>© 2025 Otakoffee Reims — Tous droits réservés</span>
+    <span>
+      <a href="index.html">← Retour au site</a> &nbsp;·&nbsp;
+      <a href="cgu.html">CGU</a> &nbsp;·&nbsp;
+      <a href="mentions-legales.html">Mentions légales</a>
+    </span>
+  </footer>
+
+</body>
+</html>
